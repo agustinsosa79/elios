@@ -1,0 +1,143 @@
+.footer {
+  padding-top: clamp(96px, 14vw, 200px);
+  padding-bottom: 28px;
+  overflow: hidden;
+}
+
+.footer__cta {
+  row-gap: 32px;
+  padding-bottom: clamp(64px, 9vw, 128px);
+}
+
+.footer__title {
+  grid-column: 1 / -1;
+  max-width: 13ch;
+}
+
+.footer__side {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+/* Número de WhatsApp como enlace grande */
+.footer__wa {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: clamp(1.7rem, 2.6vw, 2.6rem);
+  line-height: 1.1;
+  padding-bottom: 6px;
+}
+
+.footer__wa::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: 100% 50%;
+  transition: scale 0.7s var(--ease-out);
+}
+
+.footer__wa:hover::after {
+  scale: 0 1;
+  animation: link-in 0.7s var(--ease-out) 0.25s forwards;
+}
+
+.footer__wa .link__arrow {
+  width: 0.55em;
+  height: 0.55em;
+}
+
+.footer__wa:hover .link__arrow {
+  translate: 4px -4px;
+}
+
+.footer__cols {
+  row-gap: 36px;
+  padding-block: 40px;
+  border-top: 1px solid var(--line-dark);
+}
+
+.footer__col {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  justify-items: start;
+}
+
+.footer__col h3 {
+  margin-bottom: 8px;
+}
+
+.footer__col .link {
+  font-weight: 400;
+  padding-block: 2px;
+}
+
+.footer__word {
+  display: flex;
+  justify-content: space-between;
+  font-size: calc((100vw - 2 * var(--gutter)) / 1.95);
+  line-height: 0.78;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  padding-top: 0.08em;
+  margin-block: 24px 40px;
+}
+
+.footer__word span {
+  display: block;
+}
+
+.footer__legal {
+  display: grid;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-dark);
+}
+
+.footer__credits summary {
+  cursor: pointer;
+}
+
+.footer__credits ul {
+  display: grid;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+.footer__credits a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .footer__title {
+    grid-column: 1 / span 8;
+  }
+
+  .footer__side {
+    grid-column: 9 / -1;
+    align-self: end;
+    justify-items: end;
+    text-align: right;
+  }
+
+  .footer__col {
+    grid-column: span 4;
+  }
+
+  .footer__legal {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  .footer__credits {
+    text-align: right;
+  }
+}

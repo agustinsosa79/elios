@@ -1,0 +1,33 @@
+.guide__grid {
+  row-gap: 56px;
+}
+
+.guide__text {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 32px;
+  align-content: start;
+}
+
+.guide__copy {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  max-width: 460px;
+}
+
+.guide__photo {
+  grid-column: 1 / -1;
+  aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 900px) {
+  .guide__text {
+    grid-column: 1 / span 6;
+    align-content: space-between;
+  }
+
+  .guide__photo {
+    grid-column: 8 / -1;
+  }
+}

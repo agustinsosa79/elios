@@ -1,0 +1,181 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  color: var(--on-dark);
+  transition:
+    translate 0.7s var(--ease-out),
+    background-color 0.4s linear,
+    color 0.4s linear;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--line-light);
+  scale: 0 1;
+  transform-origin: 0 50%;
+  transition: scale 0.9s var(--ease-out);
+}
+
+.header.is-solid {
+  background: var(--paper);
+  color: var(--on-light);
+}
+
+.header.is-solid::after {
+  scale: 1 1;
+}
+
+.header.is-hidden {
+  translate: 0 -100%;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: var(--header-h);
+}
+
+.header__logo {
+  font-size: 1.85rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.header__nav {
+  display: none;
+}
+
+.header__nav ul {
+  display: flex;
+  gap: clamp(20px, 2.4vw, 40px);
+}
+
+/* Subrayado que crece desde el centro */
+.header__link {
+  position: relative;
+  display: inline-block;
+  padding-block: 6px;
+  font-size: 0.98rem;
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+  scale: 0 1;
+  transition: scale 0.5s var(--ease-out);
+}
+
+.header__link:hover::after {
+  scale: 1 1;
+}
+
+.header__cta {
+  display: none;
+}
+
+.header__menu {
+  height: 44px;
+  font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+  .header__nav,
+  .header__cta {
+    display: inline-flex;
+  }
+  .header__menu {
+    display: none;
+  }
+}
+
+/* ---------- Menú móvil ---------- */
+
+.menu {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: none;
+  flex-direction: column;
+  clip-path: inset(0 0 100% 0);
+  transition-property: clip-path, display, overlay;
+  transition-duration: 0.8s;
+  transition-timing-function: var(--ease-io);
+  transition-behavior: allow-discrete;
+}
+
+.menu[open] {
+  display: flex;
+}
+
+.menu[open]:where(:not([data-closing])) {
+  clip-path: inset(0 0 0 0);
+
+  @starting-style {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+.menu::backdrop {
+  background: transparent;
+}
+
+.menu__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-h);
+  flex: none;
+}
+
+.menu__nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.menu__nav ul {
+  display: grid;
+  gap: 6px;
+}
+
+.menu__nav li {
+  overflow: hidden;
+}
+
+.menu__nav a {
+  display: block;
+  font-size: clamp(2.8rem, 12vw, 4.4rem);
+  line-height: 1.05;
+  translate: 0 105%;
+  transition: translate 0.9s var(--ease-out);
+  transition-delay: inherit;
+}
+
+.menu[open]:where(:not([data-closing])) .menu__nav a {
+  translate: 0 0;
+
+  @starting-style {
+    translate: 0 105%;
+  }
+}
+
+.menu__foot {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 32px;
+}
